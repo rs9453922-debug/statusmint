@@ -337,14 +337,21 @@ async function shareStatus(){
   if(navigator.share){
     try{
       await navigator.share({
-        title:"StatusMint",      <div class="card">😎 Cool</div>
-      <div class="card">🎂 Birthday</div>
-      <div class="card">🌙 Shayari</div>
-    </div>
+        title:"StatusMint",
+        text:text
+      });
+    }
+    catch(error){}
+  }
+  else{
+    const url = "https://wa.me/?text=" +
+      encodeURIComponent(text + "\n\nMade with StatusMint ✨");
 
-    <button class="create">✨ Create Status</button>
+    window.open(url,"_blank");
+  }
+}
 
-  </div>
+</script>
 
 </body>
 </html>
