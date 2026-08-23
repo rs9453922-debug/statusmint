@@ -256,6 +256,36 @@ h2{
 .download-btn.show{
   display:block;
 }
+  .text-controls{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.text-controls > div{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.text-controls label{
+  color:#aeb7cc;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.text-controls select{
+  width:100%;
+  padding:13px;
+  border:1px solid #343e61;
+  border-radius:12px;
+  background:#171d31;
+  color:white;
+  font-size:15px;
+  outline:none;
+}
 </style>
 </head>
 
@@ -312,7 +342,37 @@ h2{
   placeholder="Apna status yahan likho..."
   maxlength="180"
 ></textarea>
-  
+  <div class="text-controls">
+
+  <div>
+    <label>Text Color</label>
+    <select id="textColor">
+      <option value="#ffffff">⚪ White</option>
+      <option value="#ffd700">🟡 Yellow</option>
+      <option value="#ff4d6d">🔴 Red</option>
+      <option value="#66e3ff">🔵 Blue</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Text Size</label>
+    <select id="textSize">
+      <option value="20">Small</option>
+      <option value="24" selected>Medium</option>
+      <option value="30">Large</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Position</label>
+    <select id="textPosition">
+      <option value="top">⬆️ Top</option>
+      <option value="center">↔️ Center</option>
+      <option value="bottom" selected>⬇️ Bottom</option>
+    </select>
+  </div>
+
+</div>
   <label class="upload-btn">
     🖼️ Choose Photo
     <input
@@ -662,6 +722,37 @@ downloadBtn.addEventListener("click", function(){
   link.remove();
 
 });
+  const textColor = document.getElementById("textColor");
+const textSize = document.getElementById("textSize");
+const textPosition = document.getElementById("textPosition");
+
+function updateTextStyle(){
+
+  photoText.style.color = textColor.value;
+  photoText.style.fontSize = textSize.value + "px";
+
+  if(textPosition.value === "top"){
+    photoText.style.top = "35px";
+    photoText.style.bottom = "auto";
+    photoText.style.transform = "none";
+  }
+  else if(textPosition.value === "center"){
+    photoText.style.top = "50%";
+    photoText.style.bottom = "auto";
+    photoText.style.transform = "translateY(-50%)";
+  }
+  else{
+    photoText.style.top = "auto";
+    photoText.style.bottom = "35px";
+    photoText.style.transform = "none";
+  }
+}
+
+textColor.addEventListener("change", updateTextStyle);
+textSize.addEventListener("change", updateTextStyle);
+textPosition.addEventListener("change", updateTextStyle);
+
+updateTextStyle();
 </script>
 
 </body>
