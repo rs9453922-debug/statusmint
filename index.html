@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatusMint</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+    }
+
+    .app {
+      max-width: 500px;
+      margin: auto;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #7c5cff;
+    }
+
+    .tag {
+      color: #aeb4c5;
+      margin-top: 5px;
+    }
+
+    .hero {
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #7047eb, #db3f91);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .hero p {
+      line-height: 1.5;
+    }
+
+    h2 {
+      margin-top: 30px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: #171d31;
+      padding: 20px 12px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid #252d47;
+      font-size: 17px;
+    }
+
+    .create {
+      margin-top: 30px;
+      width: 100%;
+      border: 0;
+      padding: 17px;
+      border-radius: 14px;
+      background: #7c5cff;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <div class="logo">StatusMint ✨</div>
+    <div class="tag">Create. Share. Express.</div>
+
+    <div class="hero">
+      <h1>Create your perfect status</h1>
+      <p>Hindi & Hinglish captions, shayari and stylish status posts in seconds.</p>
+    </div>
+
+    <h2>Choose a category</h2>
+
+    <div class="categories">
+      <div class="card">🔥 Attitude</div>
+      <div class="card">❤️ Love</div>
+      <div class="card">💪 Motivation</div>
+      <div class="card">😎 Cool</div>
+      <div class="card">🎂 Birthday</div>
+      <div class="card">🌙 Shayari</div>
+    </div>
+
+    <button class="create">✨ Create Status</button>
+
+  </div>
+
+</body>
+</html>
