@@ -157,6 +157,65 @@ h2{
   text-align:center;
   font-size:13px;
 }
+.photo-maker{
+  margin-top:35px;
+  padding-top:10px;
+}
+
+.maker-info{
+  color:#aeb7cc;
+  line-height:1.5;
+}
+
+.upload-btn{
+  display:block;
+  width:100%;
+  margin-top:15px;
+  padding:16px;
+  text-align:center;
+  border-radius:14px;
+  background:#7654ff;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.photo-preview{
+  display:none;
+  position:relative;
+  margin-top:18px;
+  width:100%;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border-radius:20px;
+  background:#171d31;
+}
+
+.photo-preview.show{
+  display:block;
+}
+
+#userPhoto{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+#photoText{
+  position:absolute;
+  left:20px;
+  right:20px;
+  bottom:35px;
+  padding:12px;
+  color:white;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  line-height:1.4;
+  text-shadow:
+    0 2px 5px #000,
+    0 0 10px #000;
+}  
 </style>
 </head>
 
@@ -201,11 +260,35 @@ h2{
     </button>
 
   </div>
+<div class="photo-maker">
 
+  <h2>📸 Photo Status Maker</h2>
+
+  <p class="maker-info">
+    Apni photo choose karke stylish status banao.
+  </p>
+
+  <label class="upload-btn">
+    🖼️ Choose Photo
+    <input
+      type="file"
+      id="photoInput"
+      accept="image/*"
+      hidden
+    >
+  </label>
+
+  <div id="photoPreview" class="photo-preview">
+    <img id="userPhoto" alt="Your selected photo">
+    <div id="photoText">Your status ✨</div>
+  </div>
+
+</div>
   <div class="tip">Made with StatusMint ✨</div>
 
 </div>
 
+  
 <script>
 const statuses = {
 
@@ -351,6 +434,34 @@ async function shareStatus(){
   }
 }
 
+  const photoInput = document.getElementById("photoInput");
+const userPhoto = document.getElementById("userPhoto");
+const photoPreview = document.getElementById("photoPreview");
+const photoText = document.getElementById("photoText");
+
+photoInput.addEventListener("change", function(){
+
+  const file = this.files[0];
+
+  if(!file){
+    return;
+  }
+
+  const imageURL = URL.createObjectURL(file);
+
+  userPhoto.src = imageURL;
+  photoPreview.classList.add("show");
+
+  const currentStatus =
+    document.getElementById("statusText").innerText.trim();
+
+  if(currentStatus){
+    photoText.innerText = currentStatus;
+  } else {
+    photoText.innerText = "Your status ✨";
+  }
+
+});
 </script>
 
 </body>
