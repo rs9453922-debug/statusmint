@@ -215,7 +215,30 @@ h2{
   text-shadow:
     0 2px 5px #000,
     0 0 10px #000;
-}  
+}
+  #customText{
+  width:100%;
+  min-height:100px;
+  margin-top:15px;
+  padding:15px;
+  border:1px solid #343e61;
+  border-radius:14px;
+  background:#171d31;
+  color:white;
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  outline:none;
+  resize:vertical;
+}
+
+#customText:focus{
+  border-color:#7654ff;
+}
+
+#customText::placeholder{
+  color:#7f879d;
+}
 </style>
 </head>
 
@@ -267,7 +290,12 @@ h2{
   <p class="maker-info">
     Apni photo choose karke stylish status banao.
   </p>
-
+<textarea
+  id="customText"
+  placeholder="Apna status yahan likho..."
+  maxlength="180"
+></textarea>
+  
   <label class="upload-btn">
     🖼️ Choose Photo
     <input
@@ -459,6 +487,22 @@ photoInput.addEventListener("change", function(){
     photoText.innerText = currentStatus;
   } else {
     photoText.innerText = "Your status ✨";
+  }
+
+});
+  const customText = document.getElementById("customText");
+
+customText.addEventListener("input", function(){
+
+  const text = this.value.trim();
+
+  if(text){
+    photoText.innerText = text;
+  } else {
+    const currentStatus =
+      document.getElementById("statusText").innerText.trim();
+
+    photoText.innerText = currentStatus || "Your status ✨";
   }
 
 });
