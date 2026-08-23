@@ -1,108 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StatusMint</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>StatusMint</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1020;
-      color: white;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    .app {
-      max-width: 500px;
-      margin: auto;
-      min-height: 100vh;
-      padding: 20px;
-    }
+body{
+  margin:0;
+  background:#0b1020;
+  color:#fff;
+  font-family:Arial,sans-serif;
+}
 
-    .logo {
-      font-size: 30px;
-      font-weight: bold;
-      color: #7c5cff;
-    }
+.app{
+  max-width:500px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
+}
 
-    .tag {
-      color: #aeb4c5;
-      margin-top: 5px;
-    }
+.logo{
+  font-size:30px;
+  font-weight:800;
+  color:#815cff;
+}
 
-    .hero {
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #7047eb, #db3f91);
-    }
+.tagline{
+  margin-top:5px;
+  color:#adb5ca;
+}
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 28px;
-    }
+.hero{
+  margin-top:28px;
+  padding:25px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#7548ed,#db3f91);
+}
 
-    .hero p {
-      line-height: 1.5;
-    }
+.hero h1{
+  margin:0 0 10px;
+  font-size:28px;
+}
 
-    h2 {
-      margin-top: 30px;
-    }
+.hero p{
+  margin:0;
+  line-height:1.5;
+}
 
-    .categories {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+h2{
+  margin-top:30px;
+}
 
-    .card {
-      background: #171d31;
-      padding: 20px 12px;
-      border-radius: 16px;
-      text-align: center;
-      border: 1px solid #252d47;
-      font-size: 17px;
-    }
+.categories{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
 
-    .create {
-      margin-top: 30px;
-      width: 100%;
-      border: 0;
-      padding: 17px;
-      border-radius: 14px;
-      background: #7c5cff;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-    }
-  </style>
+.category{
+  border:1px solid #29324f;
+  background:#171d31;
+  color:#fff;
+  padding:18px 8px;
+  border-radius:16px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.category.active{
+  background:#7654ff;
+  border-color:#947dff;
+}
+
+.result{
+  display:none;
+  margin-top:28px;
+}
+
+.result.show{
+  display:block;
+}
+
+.result-title{
+  color:#aeb7cc;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.status-card{
+  min-height:190px;
+  padding:25px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:linear-gradient(135deg,#6547e8,#d53c8d);
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+#statusText{
+  font-size:22px;
+  font-weight:700;
+  line-height:1.5;
+  white-space:pre-line;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.action{
+  border:0;
+  border-radius:13px;
+  padding:14px 8px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.copy{
+  background:#fff;
+  color:#111;
+}
+
+.share{
+  background:#25D366;
+  color:white;
+}
+
+.random{
+  width:100%;
+  margin-top:10px;
+  border:1px solid #343e61;
+  background:#171d31;
+  color:white;
+  padding:14px;
+  border-radius:13px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.tip{
+  margin:25px 0 10px;
+  color:#8790a8;
+  text-align:center;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <div class="logo">StatusMint ✨</div>
-    <div class="tag">Create. Share. Express.</div>
+  <div class="logo">StatusMint ✨</div>
+  <div class="tagline">Create. Share. Express.</div>
 
-    <div class="hero">
-      <h1>Create your perfect status</h1>
-      <p>Hindi & Hinglish captions, shayari and stylish status posts in seconds.</p>
+  <div class="hero">
+    <h1>Your next status is here.</h1>
+    <p>Choose a mood and get a Hindi or Hinglish caption instantly.</p>
+  </div>
+
+  <h2>Choose a category</h2>
+
+  <div class="categories">
+    <button class="category" data-category="attitude">🔥 Attitude</button>
+    <button class="category" data-category="love">❤️ Love</button>
+    <button class="category" data-category="motivation">💪 Motivation</button>
+    <button class="category" data-category="cool">😎 Cool</button>
+    <button class="category" data-category="birthday">🎂 Birthday</button>
+    <button class="category" data-category="shayari">🌙 Shayari</button>
+  </div>
+
+  <div id="result" class="result">
+
+    <div class="result-title">YOUR STATUS</div>
+
+    <div class="status-card">
+      <div id="statusText"></div>
     </div>
 
-    <h2>Choose a category</h2>
+    <div class="actions">
+      <button class="action copy" onclick="copyStatus()">📋 Copy</button>
+      <button class="action share" onclick="shareStatus()">↗ Share</button>
+    </div>
 
-    <div class="categories">
-      <div class="card">🔥 Attitude</div>
-      <div class="card">❤️ Love</div>
-      <div class="card">💪 Motivation</div>
-      <div class="card">😎 Cool</div>
+    <button class="random" onclick="newStatus()">
+      🔄 Show another
+    </button>
+
+  </div>
+
+  <div class="tip">Made with StatusMint ✨</div>
+
+</div>
+
+<script>
+const statuses = {
+
+attitude: [
+  "Hum badle nahi hain, bas samajh gaye hain ki duniya kaise chalti hai. 😎",
+  "Apni vibe ka main khud brand hoon. 🔥",
+  "Respect do, respect lo. Baaki ignore karo. 👑",
+  "Mujhe judge karne se pehle apni story check kar lena. 😉",
+  "Naam chhota ho sakta hai, pehchaan nahi. 🔥",
+  "Silent rehna weakness nahi, meri choice hai. 😎"
+],
+
+love: [
+  "Tum ho to har din thoda aur khoobsurat lagta hai. ❤️",
+  "Dil ko sukoon tab milta hai jab baat tumse hoti hai. 💕",
+  "Perfect koi nahi hota, par tum mere liye kaafi ho. ❤️",
+  "Ek tum, ek main, aur thodi si endless baatein. 🫶",
+  "Mohabbat lafzon se nahi, ehsaas se hoti hai. ❤️",
+  "Meri favourite notification aaj bhi tum ho. 💌"
+],
+
+motivation: [
+  "Slow progress bhi progress hoti hai. Keep going. 💪",
+  "Sapna bada hai to mehnat bhi badi karni padegi. 🔥",
+  "Aaj ka struggle kal ki strength banega. 💯",
+  "Khud par bharosa rakho, waqt badalte der nahi lagti. 🚀",
+  "Jeetne wale excuses nahi, raaste dhoondte hain. 💪",
+  "Roz 1% better. Bas yahi game hai. 📈"
+],
+
+cool: [
+  "Low-key life, high-key dreams. 😎",
+  "No drama. Bas peace aur progress. ✌️",
+  "Online hoon, available nahi. 😌",
+  "Mood: apni duniya mein mast. 😎",
+  "Simple dikhta hoon, boring nahi. ⚡",
+  "Less talking, more living. 🖤"
+],
+
+birthday: [
+  "Aaj ka din special hai—Happy Birthday! 🎂✨",
+  "Cake khao, tension bhool jao. Happy Birthday! 🎉",
+  "Tumhari smile hamesha aise hi rahe. Happy Birthday! ❤️🎂",
+  "Ek aur saal, ek aur nayi kahani. Happy Birthday! 🥳",
+  "May your year be full of happiness and success. 🎉",
+  "Birthday vibes only! 🎂🥳✨"
+],
+
+shayari: [
+  "Khamoshi bhi bahut kuch keh jaati hai,\nBas samajhne wala chahiye. 🌙",
+  "Waqt badalta raha,\nAur hum sambhalte rahe. ✨",
+  "Kuch yaadein lafzon ki mohtaaj nahi hoti,\nWoh bas dil mein reh jaati hain. ❤️",
+  "Safar khoobsurat hai,\nManzil ki fikr kyun karein. 🌙",
+  "Dil saaf rakho,\nHisaab waqt khud kar dega. ✨",
+  "Har raat ke baad savera hai,\nBas hausla zinda rakhna. 🌅"
+]
+
+};
+
+let currentCategory = "";
+let previousIndex = -1;
+
+document.querySelectorAll(".category").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document.querySelectorAll(".category").forEach(b => {
+      b.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    currentCategory = button.dataset.category;
+    previousIndex = -1;
+
+    newStatus();
+
+    document.getElementById("result").classList.add("show");
+
+    setTimeout(() => {
+      document.getElementById("result").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    },100);
+
+  });
+
+});
+
+function newStatus(){
+
+  if(!currentCategory){
+    return;
+  }
+
+  const list = statuses[currentCategory];
+
+  let index = Math.floor(Math.random() * list.length);
+
+  if(list.length > 1){
+    while(index === previousIndex){
+      index = Math.floor(Math.random() * list.length);
+    }
+  }
+
+  previousIndex = index;
+
+  document.getElementById("statusText").textContent = list[index];
+}
+
+async function copyStatus(){
+
+  const text = document.getElementById("statusText").innerText;
+
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Status copied! ✅");
+  }
+  catch(error){
+    alert("Copy nahi hua. Text ko long-press karke copy karein.");
+  }
+}
+
+async function shareStatus(){
+
+  const text = document.getElementById("statusText").innerText;
+
+  if(navigator.share){
+    try{
+      await navigator.share({
+        title:"StatusMint",      <div class="card">😎 Cool</div>
       <div class="card">🎂 Birthday</div>
       <div class="card">🌙 Shayari</div>
     </div>
